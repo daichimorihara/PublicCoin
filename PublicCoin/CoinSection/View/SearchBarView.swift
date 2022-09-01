@@ -20,6 +20,8 @@ struct SearchBarView: View {
             
             TextField("Search by name or symbol...", text: $searchText)
                 .padding(.vertical)
+                .disableAutocorrection(true)
+                .focused($name)
             
             
         }
@@ -38,9 +40,7 @@ struct SearchBarView: View {
         )
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .fill(Color.theme.background)
-                .shadow(color: .theme.base.opacity(0.3), radius: 10, x: 0, y: 0)
-                
+                .fill(Color.theme.base.opacity(0.05))
         )
         .padding()
         

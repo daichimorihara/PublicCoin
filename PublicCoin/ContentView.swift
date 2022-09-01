@@ -17,7 +17,7 @@ struct ContentView: View {
                 })
                 .tag(0)
             
-            Text("Coin")
+            CoinView()
                 .tabItem {
                     Image(systemName: "eye.fill")
                 }
