@@ -9,9 +9,15 @@ import SwiftUI
 
 struct NewsView: View {
     @StateObject var vm = NewsViewModel()
+    @State private var urlString = ""
+    @State private var showWeb = false
     
     var body: some View {
         VStack {
+            NavigationLink(isActive: $showWeb,
+                           destination: { WebSiteView(urlString: $urlString)
+            },
+                           label: { EmptyView() })
             Text("Trending News")
                 .font(.headline)
                 .fontWeight(.heavy)
@@ -19,6 +25,10 @@ struct NewsView: View {
                 ForEach(vm.articles) { article in
                     NewsRow(article: article)
                         .listRowInsets(.init(top: 5, leading: 5, bottom: 5, trailing: 0))
+                        .onTapGesture {
+                        urlString = article.url ?? ""
+                        showWeb = true
+                    }
                 }
             }
             .listStyle(PlainListStyle())

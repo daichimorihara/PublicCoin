@@ -13,8 +13,8 @@ struct PublicCoinApp: App {
         WindowGroup {
             NavigationView {
                 //ContentView()
-                //NewsView()
-                CoinView()
+                NewsView()
+//                CoinView()
             }
         }
     }

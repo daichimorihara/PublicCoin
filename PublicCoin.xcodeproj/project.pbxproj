@@ -12,6 +12,14 @@
 		421D160D28BDFE1D00774945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421D160C28BDFE1D00774945 /* Assets.xcassets */; };
 		421D161028BDFE1D00774945 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421D160F28BDFE1D00774945 /* Preview Assets.xcassets */; };
 		421D161728BDFF2400774945 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421D161628BDFF2400774945 /* Color.swift */; };
+		421F94FA28C1A65800CDD207 /* WebUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421F94F928C1A65800CDD207 /* WebUIView.swift */; };
+		421F94FE28C1AC0300CDD207 /* WebSiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421F94FD28C1AC0300CDD207 /* WebSiteView.swift */; };
+		421F950128C1B0BD00CDD207 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421F950028C1B0BD00CDD207 /* SignInView.swift */; };
+		421F950328C1B2A100CDD207 /* CustomInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421F950228C1B2A100CDD207 /* CustomInputField.swift */; };
+		421F950528C1CC3A00CDD207 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421F950428C1CC3A00CDD207 /* RegisterView.swift */; };
+		421F950728C1D05400CDD207 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 421F950628C1D05400CDD207 /* GoogleService-Info.plist */; };
+		421F950A28C1E11200CDD207 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 421F950928C1E11200CDD207 /* FirebaseAuth */; };
+		421F950C28C1E11200CDD207 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 421F950B28C1E11200CDD207 /* FirebaseFirestoreSwift */; };
 		425E640C28C0672300D20574 /* CoinRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425E640B28C0672300D20574 /* CoinRow.swift */; };
 		425E640E28C0697C00D20574 /* CoinResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425E640D28C0697C00D20574 /* CoinResponse.swift */; };
 		425E641028C06BE500D20574 /* CoinService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425E640F28C06BE500D20574 /* CoinService.swift */; };
@@ -43,6 +51,12 @@
 		421D160C28BDFE1D00774945 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		421D160F28BDFE1D00774945 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		421D161628BDFF2400774945 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		421F94F928C1A65800CDD207 /* WebUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUIView.swift; sourceTree = "<group>"; };
+		421F94FD28C1AC0300CDD207 /* WebSiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSiteView.swift; sourceTree = "<group>"; };
+		421F950028C1B0BD00CDD207 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		421F950228C1B2A100CDD207 /* CustomInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputField.swift; sourceTree = "<group>"; };
+		421F950428C1CC3A00CDD207 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		421F950628C1D05400CDD207 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		425E640B28C0672300D20574 /* CoinRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRow.swift; sourceTree = "<group>"; };
 		425E640D28C0697C00D20574 /* CoinResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinResponse.swift; sourceTree = "<group>"; };
 		425E640F28C06BE500D20574 /* CoinService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinService.swift; sourceTree = "<group>"; };
@@ -72,6 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				421F950A28C1E11200CDD207 /* FirebaseAuth in Frameworks */,
+				421F950C28C1E11200CDD207 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +113,8 @@
 		421D160728BDFE1B00774945 /* PublicCoin */ = {
 			isa = PBXGroup;
 			children = (
+				421F950628C1D05400CDD207 /* GoogleService-Info.plist */,
+				421F94FF28C1B0AE00CDD207 /* SignIn */,
 				425E640628C0669E00D20574 /* Extensions */,
 				42CA979028BF409700351D7F /* CoinSection */,
 				42CA978F28BF407F00351D7F /* NewsSection */,
@@ -115,6 +133,16 @@
 				421D160F28BDFE1D00774945 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		421F94FF28C1B0AE00CDD207 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				421F950028C1B0BD00CDD207 /* SignInView.swift */,
+				421F950228C1B2A100CDD207 /* CustomInputField.swift */,
+				421F950428C1CC3A00CDD207 /* RegisterView.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		425E640628C0669E00D20574 /* Extensions */ = {
@@ -143,6 +171,8 @@
 				42CA978928BF240E00351D7F /* NewsImageView.swift */,
 				42CA978B28BF259900351D7F /* NewsView.swift */,
 				42CA977F28BF0EBD00351D7F /* NewsRow.swift */,
+				421F94F928C1A65800CDD207 /* WebUIView.swift */,
+				421F94FD28C1AC0300CDD207 /* WebSiteView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -240,6 +270,10 @@
 			dependencies = (
 			);
 			name = PublicCoin;
+			packageProductDependencies = (
+				421F950928C1E11200CDD207 /* FirebaseAuth */,
+				421F950B28C1E11200CDD207 /* FirebaseFirestoreSwift */,
+			);
 			productName = PublicCoin;
 			productReference = 421D160528BDFE1B00774945 /* PublicCoin.app */;
 			productType = "com.apple.product-type.application";
@@ -268,6 +302,9 @@
 				Base,
 			);
 			mainGroup = 421D15FC28BDFE1B00774945;
+			packageReferences = (
+				421F950828C1E11200CDD207 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 421D160628BDFE1B00774945 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -284,6 +321,7 @@
 			files = (
 				421D161028BDFE1D00774945 /* Preview Assets.xcassets in Resources */,
 				421D160D28BDFE1D00774945 /* Assets.xcassets in Resources */,
+				421F950728C1D05400CDD207 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,10 +353,15 @@
 				425E641628C0854900D20574 /* CoinImageView.swift in Sources */,
 				42CA978228BF0F0700351D7F /* PreviewProvider.swift in Sources */,
 				425E640E28C0697C00D20574 /* CoinResponse.swift in Sources */,
+				421F950528C1CC3A00CDD207 /* RegisterView.swift in Sources */,
+				421F94FE28C1AC0300CDD207 /* WebSiteView.swift in Sources */,
+				421F950128C1B0BD00CDD207 /* SignInView.swift in Sources */,
 				42CA978028BF0EBD00351D7F /* NewsRow.swift in Sources */,
 				425E641228C0701600D20574 /* Double.swift in Sources */,
+				421F950328C1B2A100CDD207 /* CustomInputField.swift in Sources */,
 				425E641428C0809100D20574 /* CoinImageService.swift in Sources */,
 				421D161728BDFF2400774945 /* Color.swift in Sources */,
+				421F94FA28C1A65800CDD207 /* WebUIView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +562,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		421F950828C1E11200CDD207 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		421F950928C1E11200CDD207 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 421F950828C1E11200CDD207 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		421F950B28C1E11200CDD207 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 421F950828C1E11200CDD207 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 421D15FD28BDFE1B00774945 /* Project object */;
 }
