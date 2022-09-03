@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
+    @ObservedObject var vm: AuthViewModel
     @State private var username: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
@@ -25,12 +26,17 @@ struct RegisterView: View {
                                  isSecure: false,
                                  placeholder: "Email",
                                  text: $email)
+                .textInputAutocapitalization(.never)
                 CustomInputField(imageName: "lock",
                                  isSecure: true,
                                  placeholder: "password",
                                  text: $password)
                 Button {
-                    
+                    Task {
+                        try await vm.createNewUser(email: email,
+                                                   password: password,
+                                                   username: username)
+                    }
                 } label: {
                     Text("Create a new Account")
                         .padding()
@@ -61,6 +67,6 @@ struct RegisterView: View {
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        RegisterView(vm: AuthViewModel())
     }
 }

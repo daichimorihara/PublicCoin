@@ -6,15 +6,23 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct PublicCoinApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
                 //ContentView()
-                NewsView()
+              //  NewsView()
 //                CoinView()
+              //  SignInView()
+                AuthTestView()
             }
         }
     }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
+    @StateObject var vm = AuthViewModel()
     @State private var email: String = ""
     @State private var password: String = ""
     var body: some View {
@@ -19,6 +20,7 @@ struct SignInView: View {
                                  isSecure: false,
                                  placeholder: "Email",
                                  text: $email)
+                .textInputAutocapitalization(.never)
                 
                 CustomInputField(imageName: "lock",
                                  isSecure: true,
@@ -26,7 +28,9 @@ struct SignInView: View {
                                  text: $password)
                 
                 Button {
-                    
+                    Task {
+                        try await vm.login(email: email, password: password)
+                    }
                 } label: {
                     Text("Sign In")
                         .padding()
@@ -38,7 +42,7 @@ struct SignInView: View {
 
             }
             NavigationLink {
-                RegisterView()
+                RegisterView(vm: vm)
             } label: {
                 HStack {
                     Text("Don't have an account?")
