@@ -11,10 +11,23 @@ import FirebaseFirestore
 
 @MainActor
 class AuthViewModel: ObservableObject {
+    @Published var waiting = false
+    @Published var warning = false
+    @Published var warningType: WarningType = .tryAgain
     
+    enum WarningType: String {
+        case notUnique = "This username alreadly exist"
+        case passOremail = "Email or Password isn't correct"
+        case tryAgain = "Try Again"
+    }
+
     
     func createNewUser(email: String, password: String, username: String) async throws {
         guard try await !checkUsernameExists(username: username) else {
+            await MainActor.run(body: {
+                self.warning = true
+                self.warningType = .notUnique
+            })
             print("username isn't unique")
             return
         }
@@ -29,15 +42,32 @@ class AuthViewModel: ObservableObject {
 
             defaultChange(bool: true)
         } catch {
+            await MainActor.run(body: {
+                self.warning = true
+                self.warningType = .tryAgain
+            })
             print("fail to create an account")
         }
 
     }
     
     func login(email: String, password: String) async throws {
-        if let _ = try? await Auth.auth().signIn(withEmail: email, password: password) {
+//        if let _ = try await Auth.auth().signIn(withEmail: email, password: password) {
+//            defaultChange(bool: true)
+//        } else {
+//            self.warning = true
+//            self.warningType = .passOremail
+//            print("Failed to login")
+//        }
+        do {
+            let _ = try await Auth.auth().signIn(withEmail: email, password: password)
             defaultChange(bool: true)
-        } else {
+        } catch  {
+            await MainActor.run(body: {
+                self.warning = true
+                self.warningType = .passOremail
+            })
+    
             print("Failed to login")
         }
         

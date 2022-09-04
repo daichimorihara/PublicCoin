@@ -29,6 +29,7 @@ struct Coin: Identifiable, Decodable {
     let priceChange24h: Double
     let priceChangePercentage24h: Double
     let sparklineIn7d: SparklineIn7D
+    let holding: Double?
     
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, image
@@ -36,6 +37,14 @@ struct Coin: Identifiable, Decodable {
         case priceChange24h = "price_change_24h"
         case priceChangePercentage24h = "price_change_percentage_24h"
         case sparklineIn7d = "sparkline_in_7d"
+        case holding
+    }
+    
+    func updateAmount(amount: Double) -> Coin {
+        return Coin(id: id, symbol: symbol, name: name, image: image, currentPrice: currentPrice, priceChange24h: priceChange24h, priceChangePercentage24h: priceChangePercentage24h, sparklineIn7d: sparklineIn7d, holding: amount)
+    }
+    var currentValue: Double {
+        return (holding ?? 0) * currentPrice
     }
 }
 

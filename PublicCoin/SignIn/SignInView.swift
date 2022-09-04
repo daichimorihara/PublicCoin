@@ -14,6 +14,7 @@ struct SignInView: View {
     var body: some View {
 
         ZStack(alignment: .bottom) {
+            
             VStack {
                 Spacer()
                 CustomInputField(imageName: "envelope",
@@ -29,7 +30,9 @@ struct SignInView: View {
                 
                 Button {
                     Task {
+                        vm.waiting = true
                         try await vm.login(email: email, password: password)
+                        vm.waiting = false
                     }
                 } label: {
                     Text("Sign In")
@@ -54,6 +57,11 @@ struct SignInView: View {
                 .foregroundColor(.blue)
             }
 
+        }
+        .alert(vm.warningType.rawValue, isPresented: $vm.warning) {
+            
+        } message: {
+            
         }
         
         
