@@ -13,58 +13,59 @@ struct SignInView: View {
     @State private var password: String = ""
     var body: some View {
 
-        ZStack(alignment: .bottom) {
-            
-            VStack {
-                Spacer()
-                CustomInputField(imageName: "envelope",
-                                 isSecure: false,
-                                 placeholder: "Email",
-                                 text: $email)
-                .textInputAutocapitalization(.never)
+        NavigationView {
+            ZStack(alignment: .bottom) {
                 
-                CustomInputField(imageName: "lock",
-                                 isSecure: true,
-                                 placeholder: "password",
-                                 text: $password)
-                
-                Button {
-                    Task {
-                        vm.waiting = true
-                        try await vm.login(email: email, password: password)
-                        vm.waiting = false
+                VStack {
+                    Spacer()
+                    CustomInputField(imageName: "envelope",
+                                     isSecure: false,
+                                     placeholder: "Email",
+                                     text: $email)
+                    .textInputAutocapitalization(.never)
+                    
+                    CustomInputField(imageName: "lock",
+                                     isSecure: true,
+                                     placeholder: "password",
+                                     text: $password)
+                    
+                    Button {
+                        Task {
+                            vm.waiting = true
+                            try await vm.login(email: email, password: password)
+                            vm.waiting = false
+                        }
+                    } label: {
+                        Text("Sign In")
+                            .padding()
+                            .background(.blue)
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
                     }
+                    Spacer()
+
+                }
+                NavigationLink {
+                    RegisterView(vm: vm)
                 } label: {
-                    Text("Sign In")
-                        .padding()
-                        .background(.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                    HStack {
+                        Text("Don't have an account?")
+                            
+                        Text("Sign Up")
+                            .fontWeight(.semibold)
+                    }
+                    .font(.footnote)
+                    .foregroundColor(.blue)
                 }
-                Spacer()
 
             }
-            NavigationLink {
-                RegisterView(vm: vm)
-            } label: {
-                HStack {
-                    Text("Don't have an account?")
-                        
-                    Text("Sign Up")
-                        .fontWeight(.semibold)
-                }
-                .font(.footnote)
-                .foregroundColor(.blue)
+            .navigationBarHidden(true)
+            .alert(vm.warningType.rawValue, isPresented: $vm.warning) {
+                
+            } message: {
+                
             }
-
         }
-        .alert(vm.warningType.rawValue, isPresented: $vm.warning) {
-            
-        } message: {
-            
-        }
-        
-        
     }
 }
 

@@ -32,15 +32,19 @@ class AuthViewModel: ObservableObject {
             return
         }
         do {
-            let _ = try await Auth.auth().createUser(withEmail: email, password: password)
+            let result = try await Auth.auth().createUser(withEmail: email, password: password)
+            
+            let uid = result.user.uid
             
             try await Firestore.firestore()
                 .collection("users")
                 .document(username)
-                .setData(["init" : "done"])
+                .setData(["uid" : uid])
             
 
             defaultChange(bool: true)
+            UserDefaults.standard.set(uid, forKey: "UserID")
+            UserDefaults.standard.set(username, forKey: "Username")
         } catch {
             await MainActor.run(body: {
                 self.warning = true
@@ -60,8 +64,19 @@ class AuthViewModel: ObservableObject {
 //            print("Failed to login")
 //        }
         do {
-            let _ = try await Auth.auth().signIn(withEmail: email, password: password)
+            let result = try await Auth.auth().signIn(withEmail: email, password: password)
+            let uid = result.user.uid
+            guard let username = try await Firestore.firestore()
+                .collection("users")
+                .getDocuments()
+                .documents.first(where: { $0.data()["uid"] as! String == uid })?.documentID else {
+                print("Failed to find user name")
+                return
+            }
             defaultChange(bool: true)
+            UserDefaults.standard.set(uid, forKey: "UserID")
+            UserDefaults.standard.set(username, forKey: "Username")
+            print(username)
         } catch  {
             await MainActor.run(body: {
                 self.warning = true
@@ -77,6 +92,8 @@ class AuthViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             defaultChange(bool: false)
+            UserDefaults.standard.set("", forKey: "UserID")
+            UserDefaults.standard.set("", forKey: "Username")
         } catch {
             print("failed to log out")
         }

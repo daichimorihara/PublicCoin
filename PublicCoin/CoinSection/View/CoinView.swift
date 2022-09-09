@@ -12,37 +12,35 @@ struct CoinView: View {
     @StateObject var vm = CoinViewModel()
     
     var body: some View {
-        VStack {
-            Text("Live Prices")
-                .font(.headline)
-                .fontWeight(.heavy)
-            
-            SearchBarView(searchText: $vm.searchText)
-            
-            HStack {
-                Text("Coin")
-                Spacer()
-                Text("Price")
-            }
-            .padding(.horizontal)
-            .foregroundColor(.theme.secondary)
-            .font(.caption)
-            
-            List() {
-                ForEach(vm.filteredCoins) { coin in
-                    CoinRow(coin: coin)
-                        .listRowInsets(.init(top: 10, leading: 5, bottom: 10, trailing: 5))
+        NavigationView {
+            VStack {
+                Text("Live Prices")
+                    .font(.headline)
+                    .fontWeight(.heavy)
+                
+                SearchBarView(searchText: $vm.searchText)
+                
+                HStack {
+                    Text("Coin")
+                    Spacer()
+                    Text("Price")
                 }
+                .padding(.horizontal)
+                .foregroundColor(.theme.secondary)
+                .font(.caption)
+                
+                List() {
+                    ForEach(vm.filteredCoins) { coin in
+                        CoinRow(coin: coin)
+                            .listRowInsets(.init(top: 10, leading: 5, bottom: 10, trailing: 5))
+                    }
+                }
+                .listStyle(PlainListStyle())
+                Spacer()
             }
-            .listStyle(PlainListStyle())
-            
-            Spacer()
-            
+            .navigationBarHidden(true)
         }
-        .task {
-            await vm.fetchCoins()
-        }
-        .navigationBarHidden(true)
+        
     }
 }
 

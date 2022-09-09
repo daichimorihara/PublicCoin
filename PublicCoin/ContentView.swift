@@ -8,25 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var index = 0
+    @AppStorage("signin") var yes = false
+
     var body: some View {
-        TabView(selection: $index) {
-            NewsView()
-                .tabItem({
-                    Image(systemName: "newspaper.fill")
-                })
-                .tag(0)
-            
-            CoinView()
-                .tabItem {
-                    Image(systemName: "eye.fill")
+        ZStack {
+            HomeView()
+                .navigationBarHidden(true)
+                .opacity(yes ? 1 : 0)
+
+            if !UserDefaults.standard.bool(forKey: "signin") {
+                ZStack {
+                    SignInView()
                 }
-                .tag(1)
-            Text("Share")
-                .tabItem {
-                    Image(systemName: "person")
-                }
-                .tag(2)
+                .opacity(yes ? 0 : 1)
+            }
         }
     }
 }

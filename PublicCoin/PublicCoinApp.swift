@@ -17,13 +17,15 @@ struct PublicCoinApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                //ContentView()
+            
+                ContentView()
+
               //  NewsView()
 //                CoinView()
               //  SignInView()
-                AuthTestView()
-            }
+            //    AuthTestView()
+              //  HomeView()
+            
         }
     }
 }
