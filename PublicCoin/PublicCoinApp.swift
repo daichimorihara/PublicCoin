@@ -14,11 +14,13 @@ struct PublicCoinApp: App {
     init() {
         FirebaseApp.configure()
     }
+    //@StateObject var vm = CoinViewModel()
     
     var body: some Scene {
         WindowGroup {
             
                 ContentView()
+                //.environmentObject(vm)
 
               //  NewsView()
 //                CoinView()

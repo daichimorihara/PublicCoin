@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct PieView: View {
-    @ObservedObject var vm: CoinViewModel
+    //@ObservedObject var vm: CoinViewModel
     
-    
+    var slices: [PieData]
+    var totalValue: Double
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .center) {
                 
-                ForEach(vm.slices) { slice in
+                ForEach(slices) { slice in
                     PieChart(pieData: slice)
                 }
                 
@@ -28,7 +29,7 @@ struct PieView: View {
                     Text("Total")
                         .fontWeight(.bold)
                         .foregroundColor(Color.theme.secondary)
-                    Text(vm.totalValue.asValue())
+                    Text(totalValue.asValue())
                         .fontWeight(.semibold)
                 }
             }
@@ -40,6 +41,6 @@ struct PieView: View {
 
 struct PieView_Previews: PreviewProvider {
     static var previews: some View {
-        PieView(vm: CoinViewModel())
+        PieView(slices: [], totalValue: 0)
     }
 }

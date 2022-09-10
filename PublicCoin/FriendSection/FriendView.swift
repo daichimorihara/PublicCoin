@@ -8,36 +8,53 @@
 import SwiftUI
 
 struct FriendView: View {
-    @StateObject var vm = AuthViewModel()
+    @StateObject var authVM = AuthViewModel()
+    @StateObject var vm = FriendViewModel()
     @StateObject var coinVM = CoinViewModel()
     
-    @State private var textUserName = ""
-    
+    @State private var show = false
+    @State private var selectedUsername: String?
+    @State private var showPort = false
     var body: some View {
-        VStack {
-            header
-            ScrollView {
-                TextField("HGEIO", text: $textUserName)
-                Button {
-                    Task {
-                        await coinVM.fetchFireCoins(username: textUserName)
-                    }
+        NavigationView {
+            VStack {
+                NavigationLink(isActive: $showPort) {
+                    FriendPortView(vm: coinVM, username: selectedUsername ?? "Unknown")
+                        
                 } label: {
-                    Text("Fetch")
+                    EmptyView()
+                }
+
+                header
+                ScrollView {
+                    
+                    ForEach(vm.followings, id: \.self) { username in
+                        HStack {
+                            Text(username)
+                                .bold()
+                            Spacer()
+                        }
                         .padding()
-                        .background(.blue)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            Task {
+                                await coinVM.fetchFireCoins(username: username)
+                            }
+                            selectedUsername = username
+                            showPort.toggle()
+                        }
+                    }
+                    
                 }
-                
-                ForEach(coinVM.friendCoins) { coin in
-                    PortRow(coin: coin, allocation: coin.currentValue / coinVM.totalFrinedValue * 100)
-                        .padding(5)
-                    Divider()
-                }
-                
+                Spacer()
             }
-            Spacer()
+            .fullScreenCover(isPresented: $show, onDismiss: {
+                
+            }, content: {
+                FriendAddView(vm: vm)
+            })
+            .navigationBarHidden(true)
         }
-        .navigationBarHidden(true)
     }
 }
 
@@ -58,14 +75,14 @@ extension FriendView {
             .overlay(
                 HStack {
                     Button {
-                        vm.signOut()
+                        authVM.signOut()
                     } label: {
                         Text("Sign Out")
                     }
                     .padding(.horizontal)
                     Spacer()
                     Button {
-                        
+                        show.toggle()
                     } label: {
                         Image(systemName: "magnifyingglass")
                     }

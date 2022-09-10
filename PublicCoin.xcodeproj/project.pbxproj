@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42041CAF28CC372D003D4EDE /* FriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42041CAE28CC372D003D4EDE /* FriendViewModel.swift */; };
+		42041CB128CC3815003D4EDE /* SSBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42041CB028CC3815003D4EDE /* SSBarView.swift */; };
+		42041CB328CC4170003D4EDE /* FriendSearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42041CB228CC4170003D4EDE /* FriendSearchRow.swift */; };
+		42041CB528CC667B003D4EDE /* PPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42041CB428CC667B003D4EDE /* PPView.swift */; };
+		42041CB728CC6EDF003D4EDE /* FriendPortView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42041CB628CC6EDF003D4EDE /* FriendPortView.swift */; };
 		421D160928BDFE1B00774945 /* PublicCoinApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421D160828BDFE1B00774945 /* PublicCoinApp.swift */; };
 		421D160B28BDFE1B00774945 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421D160A28BDFE1B00774945 /* ContentView.swift */; };
 		421D160D28BDFE1D00774945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 421D160C28BDFE1D00774945 /* Assets.xcassets */; };
@@ -62,6 +67,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42041CAE28CC372D003D4EDE /* FriendViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewModel.swift; sourceTree = "<group>"; };
+		42041CB028CC3815003D4EDE /* SSBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSBarView.swift; sourceTree = "<group>"; };
+		42041CB228CC4170003D4EDE /* FriendSearchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendSearchRow.swift; sourceTree = "<group>"; };
+		42041CB428CC667B003D4EDE /* PPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PPView.swift; sourceTree = "<group>"; };
+		42041CB628CC6EDF003D4EDE /* FriendPortView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendPortView.swift; sourceTree = "<group>"; };
 		421D160528BDFE1B00774945 /* PublicCoin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PublicCoin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		421D160828BDFE1B00774945 /* PublicCoinApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicCoinApp.swift; sourceTree = "<group>"; };
 		421D160A28BDFE1B00774945 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -203,6 +213,11 @@
 				4225513628C9E15700F6B966 /* FriendView.swift */,
 				42721E5128CB027B0037501E /* FireFriendService.swift */,
 				42721E5328CB46CB0037501E /* FriendAddView.swift */,
+				42041CAE28CC372D003D4EDE /* FriendViewModel.swift */,
+				42041CB028CC3815003D4EDE /* SSBarView.swift */,
+				42041CB228CC4170003D4EDE /* FriendSearchRow.swift */,
+				42041CB428CC667B003D4EDE /* PPView.swift */,
+				42041CB628CC6EDF003D4EDE /* FriendPortView.swift */,
 			);
 			path = FriendSection;
 			sourceTree = "<group>";
@@ -419,7 +434,9 @@
 				4225513428C9E06A00F6B966 /* HomeView.swift in Sources */,
 				4225513728C9E15700F6B966 /* FriendView.swift in Sources */,
 				4225511A28C9DECA00F6B966 /* AddPortVIew.swift in Sources */,
+				42041CAF28CC372D003D4EDE /* FriendViewModel.swift in Sources */,
 				4225513128C9DF5100F6B966 /* ImageFileManager.swift in Sources */,
+				42041CB128CC3815003D4EDE /* SSBarView.swift in Sources */,
 				42721E5428CB46CB0037501E /* FriendAddView.swift in Sources */,
 				42CA977A28BF0A4C00351D7F /* Response.swift in Sources */,
 				42CA978C28BF259900351D7F /* NewsView.swift in Sources */,
@@ -428,6 +445,7 @@
 				4225512728C9DF4300F6B966 /* PortCoinCol.swift in Sources */,
 				421D160928BDFE1B00774945 /* PublicCoinApp.swift in Sources */,
 				42CA978228BF0F0700351D7F /* PreviewProvider.swift in Sources */,
+				42041CB728CC6EDF003D4EDE /* FriendPortView.swift in Sources */,
 				421F950528C1CC3A00CDD207 /* RegisterView.swift in Sources */,
 				4225513028C9DF5100F6B966 /* CoinImageService.swift in Sources */,
 				421F94FE28C1AC0300CDD207 /* WebSiteView.swift in Sources */,
@@ -439,8 +457,10 @@
 				425E641228C0701600D20574 /* Double.swift in Sources */,
 				4273F71D28C34829008CAF93 /* AuthTestView.swift in Sources */,
 				4225512928C9DF4300F6B966 /* SearchBarView.swift in Sources */,
+				42041CB528CC667B003D4EDE /* PPView.swift in Sources */,
 				4225512828C9DF4300F6B966 /* PortRow.swift in Sources */,
 				4225512628C9DF4300F6B966 /* PieChart.swift in Sources */,
+				42041CB328CC4170003D4EDE /* FriendSearchRow.swift in Sources */,
 				4225511B28C9DECA00F6B966 /* PortView.swift in Sources */,
 				4273F71928C2E430008CAF93 /* AuthViewModel.swift in Sources */,
 				421F950328C1B2A100CDD207 /* CustomInputField.swift in Sources */,

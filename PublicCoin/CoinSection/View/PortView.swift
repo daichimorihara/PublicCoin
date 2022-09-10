@@ -16,7 +16,7 @@ struct PortView: View {
         VStack {
             header
             ScrollView {
-                PieView(vm: vm)
+                PieView(slices: vm.slices, totalValue: vm.totalValue)
                     .frame(width: UIScreen.main.bounds.width * 0.8,
                            height: UIScreen.main.bounds.width * 0.8)
                 title

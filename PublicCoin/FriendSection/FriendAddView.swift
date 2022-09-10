@@ -9,54 +9,51 @@ import SwiftUI
 
 struct FriendAddView: View {
     @Environment(\.dismiss) var dismiss
+    @ObservedObject var vm: FriendViewModel
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            header
+            Divider()
+            Text("FRIENDS RESULTS")
+                .font(.headline)
+                .padding(.leading)
+            
+            ScrollView {
+                ForEach(vm.filteredFriends, id: \.self) { username in
+                    FriendSearchRow(username: username,
+                                    following: vm.isFollowing(username: username)) {
+                        vm.updateFriend(username: username)
+                    }
+
+                }
+            }
+            Spacer()
+            
+        }
     }
 }
 
 struct FriendAddView_Previews: PreviewProvider {
     static var previews: some View {
-        FriendAddView()
+        FriendAddView(vm: FriendViewModel())
     }
 }
 
 extension FriendAddView {
     private var header: some View {
-        Text("Find your friends")
-            .font(.headline)
-            .fontWeight(.heavy)
-            .frame(width: UIScreen.main.bounds.width)
-            .overlay(
-                HStack {
-                    Button {
-                        dismiss()
-                    } label: {
-                        HStack(spacing: 0) {
-                            Image(systemName: "chevron.left")
-                            Text("My Holdings")
-                        }
-                    }
-                    
-                    Spacer()
-                    
-                    HStack {
-                        Image(systemName: "checkmark")
-                            //.opacity(check ? 1 : 0)
-
-                        Button {
-                            //saveButtonPressed()
-                        } label: {
-                            Text("Save")
-                                .fontWeight(.semibold)
-                        }
-//                        .opacity(selectedCoin != nil &&
-//                                 selectedCoin?.holding != Double(amount) ? 1.0 : 0.0
-//                        )
-                    }
-                }
-                    .foregroundColor(.theme.base)
-                    .padding(.horizontal)
-            )
+        HStack {
+            SSBarView(placeHolder: "Search by username", searchText: $vm.searchText)
+            
+            Button {
+                vm.searchText = ""
+                dismiss()
+            } label: {
+                Text("Cancel")
+            }
+            .foregroundColor(.theme.base)
+        }
+        .padding(.vertical)
+        .padding(.horizontal, 5)
     }
 }

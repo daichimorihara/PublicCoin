@@ -14,6 +14,8 @@ class PortDataService {
     
     private let container: NSPersistentContainer
     @Published var savedEntities = [PortEntity]()
+    @Published var savedFriends = [FriendEntity]()
+    
     
     private init() {
         container = NSPersistentContainer(name: "PortContainer")
@@ -24,6 +26,7 @@ class PortDataService {
             //
             self.container.viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
             self.getPort()
+            self.getFriends()
         }
     }
     
@@ -36,6 +39,22 @@ class PortDataService {
             }
         } else {
             add(coin: coin, amount: amount)
+        }
+    }
+    
+    func updateFriend(username: String) {
+        if let entity = savedFriends.first(where: {$0.username == username}) {
+            deleteFriend(entity: entity)
+        } else {
+            addFriend(username: username)
+        }
+    }
+    
+    func isFollowing(username: String) -> Bool {
+        if savedFriends.first(where: {$0.username == username}) != nil {
+            return true
+        } else {
+            return false
         }
     }
     
@@ -71,6 +90,31 @@ class PortDataService {
         } catch  {
             print("Failed to fetch Core Data \(error)")
         }
+    }
+    
+    private func getFriends() {
+        let request = NSFetchRequest<FriendEntity>(entityName: "FriendEntity")
+        do {
+            savedFriends = try container.viewContext.fetch(request)
+        } catch  {
+            print("Failed to fetch core Data \(error)")
+        }
+    }
+    
+    private func friendsChangeApplied() {
+        save()
+        getFriends()
+    }
+    
+    private func addFriend(username: String) {
+        let entity = FriendEntity(context: container.viewContext)
+        entity.username = username
+        friendsChangeApplied()
+    }
+    
+    private func deleteFriend(entity: FriendEntity) {
+        container.viewContext.delete(entity)
+        friendsChangeApplied()
     }
     
     private func applyChange() {

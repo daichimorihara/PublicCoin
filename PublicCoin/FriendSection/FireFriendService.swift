@@ -23,6 +23,24 @@ class FireFriendService {
 //        }
 //            
 //    }
+    
+    func fetchFriends() async -> [String] {
+        var temp: [String] = []
+        do {
+            let doc = try await Firestore.firestore()
+                .collection("users")
+                .getDocuments()
+                .documents
+            for document in doc {
+                temp.append(document.documentID)
+            }
+            
+        } catch  {
+            print("Failed to fetch fire friends")
+        }
+        return temp
+    }
+    
     func fetchFireCoins(username: String) async -> [FireCoin] {
         var temp: [FireCoin] = []
         do {
@@ -35,7 +53,7 @@ class FireFriendService {
             }
             
         } catch  {
-            
+            print("Failed to fetch fire coins")
         }
         return temp
     }

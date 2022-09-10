@@ -20,6 +20,7 @@ class CoinViewModel: ObservableObject {
     @Published var friendFireCoins = [FireCoin]()
     
     @Published var slices = [PieData]()
+    @Published var friendSlices = [PieData]()
     
     let service = CoinService()
     let portService = PortDataService.shared
@@ -103,6 +104,26 @@ class CoinViewModel: ObservableObject {
             .sink { [weak self] returnedCoins in
                 
                 self?.friendCoins = returnedCoins.filter({ $0.currentValue > 0 })
+                
+                
+                var temp: [PieData] = []
+                var total: Double = 0
+                for ccoin in returnedCoins {
+                    total += ccoin.currentValue
+                }
+                var endDeg: Double = 0
+                for (i, acoin) in returnedCoins.enumerated() {
+                    let degrees: Double = acoin.currentValue / total * 360
+                    let color = self?.chooseColor(i)
+                    temp.append(PieData(startAngle: Angle(degrees: endDeg),
+                                        endAngle: Angle(degrees: endDeg + degrees),
+                                        color: color ?? Color.green,
+                                        percent: acoin.currentValue / total * 100,
+                                        text: acoin.symbol.uppercased()))
+                    endDeg += degrees
+                }
+                self?.friendSlices = temp
+                
             }
             .store(in: &cancellables)
 
